@@ -1,0 +1,132 @@
+﻿@page "/"
+
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Components.Web;
+@using Microsoft.AspNetCore.Components.Forms;
+
+@using DataSummary.Entities;
+@using DataSummary.Services;
+
+@inject NavigationManager Navigation
+@inherits OwningComponentBase<CommaSeparatedValuesFileService>
+@rendermode InteractiveServer
+
+<PageTitle>Sales Data</PageTitle>
+
+<EditForm FormName="formCSVData" Model="@SalesDataFilters">
+    @* TODO need to sort out calculation of window height top resize the div *@
+    <div style="height: 600px; overflow: auto;">
+        <table>
+            <tr>
+                <td>
+                    <InputSelect @bind-Value="filterSegment" @onclick="(() => Search())">
+                        <option value="">All Segments</option>
+                        @if (Segments != null)
+                        {
+                            @foreach (var segment in Segments)
+                            {
+                                <option value=@segment.Key>@segment.Value</option>
+                            }
+                        }
+                    </InputSelect>
+                </td>
+                <td class="tdColumnSeparator"></td>
+                <td>
+                    <InputSelect @bind-Value="filterCountry" @onclick="(() => Search())">
+                        <option value="">All Countries</option>
+                        @if (Countries != null)
+                        {
+                            @foreach (var country in Countries)
+                            {
+                                <option value=@country.Key>@country.Value</option>
+                            }
+                        }
+                    </InputSelect>
+                </td>
+                <td class="tdColumnSeparator"></td>
+                <td>
+                    <InputSelect @bind-Value="filterProduct" @onclick="(() => Search())">
+                        <option value="">All Products</option>
+                        @if (Products != null)
+                        {
+                            @foreach (var product in Products)
+                            {
+                                <option value=@product.Key>@product.Value</option>
+                            }
+                        }
+                    </InputSelect>
+                </td>
+                <td class="tdColumnSeparator"></td>
+                <td>
+                    <InputSelect @bind-Value="filterDiscountBand" @onclick="(() => Search())">
+                        <option value="">All Discount Bands</option>
+                        @if (DiscountBands != null)
+                        {
+                            @foreach (var discountBand in DiscountBands)
+                            {
+                                <option value=@discountBand.Key>@discountBand.Value</option>
+                            }
+                        }
+                    </InputSelect>
+                </td>
+                <td class="tdColumnSeparator"></td>
+
+            </tr>
+            <tr>
+                <td class="tdColumnHeader">Segment</td>
+                <td class="tdColumnSeparator"></td>
+                <td class="tdColumnHeader">Country</td>
+                <td class="tdColumnSeparator"></td>
+                <td class="tdColumnHeader">Product</td>
+                <td class="tdColumnSeparator"></td>
+                <td class="tdColumnHeader">Discount Band</td>
+                <td class="tdColumnSeparator"></td>
+                <td class="tdColumnHeader">Units Sold</td>
+                <td class="tdColumnSeparator"></td>
+                <td class="tdColumnHeader">Manufacturing Price</td>
+                <td class="tdColumnSeparator"></td>
+                <td class="tdColumnHeader">Sale Price</td>
+                <td class="tdColumnSeparator"></td>
+                <td class="tdColumnHeader">Date</td>
+            </tr>
+            @foreach (SalesData sale in salesData)
+            {
+                <tr>
+                    <td>
+                        @sale.Segment
+                    </td>
+                    <td class="tdColumnSeparator"></td>
+                    <td>
+                        @sale.Country
+                    </td>
+                    <td class="tdColumnSeparator"></td>
+                    <td>
+                        @sale.Product
+                    </td>
+                    <td class="tdColumnSeparator"></td>
+                    <td>
+                        @sale.DiscountBand
+                    </td>
+                    <td class="tdColumnSeparator"></td>
+                    <td class="tdColumnDouble">
+                        @string.Format("{0:N2}", @sale.UnitsSold)
+                    </td>
+                    <td class="tdColumnSeparator"></td>
+                    <td class="tdColumnDouble">
+                        @string.Format("{0:N2}", @sale.ManufacturingPrice)
+                    </td>
+                    <td class="tdColumnSeparator"></td>
+                    <td class="tdColumnDouble">
+                        @string.Format("{0:N2}", @sale.SalePrice)
+                    </td>
+                    <td class="tdColumnSeparator"></td>
+                    <td class="tdColumnDate">
+                        @formatDate(@sale.Date)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+
+</EditForm>
+

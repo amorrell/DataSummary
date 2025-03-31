@@ -1,0 +1,7 @@
+C:\Users\mars\source\repos\DataSummary\DataSummary\obj\Debug\net6.0\DataSummary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mars\source\repos\DataSummary\DataSummary\obj\Debug\net6.0\DataSummary.AssemblyInfoInputs.cache
+C:\Users\mars\source\repos\DataSummary\DataSummary\obj\Debug\net6.0\DataSummary.AssemblyInfo.cs
+C:\Users\mars\source\repos\DataSummary\DataSummary\obj\Debug\net6.0\DataSummary.csproj.CoreCompileInputs.cache
+C:\Users\mars\source\repos\DataSummary\DataSummary\obj\Debug\net6.0\DataSummary.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\mars\source\repos\DataSummary\DataSummary\obj\Debug\net6.0\DataSummary.RazorAssemblyInfo.cache
+C:\Users\mars\source\repos\DataSummary\DataSummary\obj\Debug\net6.0\DataSummary.RazorAssemblyInfo.cs
